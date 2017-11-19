@@ -2,7 +2,6 @@
 // Start the session
 session_start();
 
-
 $query = "SELECT * FROM seat";
 
 // Connect to MySQL
@@ -33,8 +32,6 @@ mysqli_close( $database );
 
 <!DOCTYPE html>
 
-<!-- Fig. 19.13: form.html --> 
-<!-- XHTML form for gathering user input. -->
 <html>
    <head>
       <meta charset = "utf-8">
@@ -93,8 +90,6 @@ mysqli_close( $database );
                $price = $_SESSION["sectionC_price"];
             }
 
-            //print( "<p>$element is the $value </p>" );
-
             print("</strong></caption>");
 
             print("<thead>
@@ -133,12 +128,9 @@ mysqli_close( $database );
 
       <p>Enter your information and select a section to buy a seat from.</p>
    
-
-      <!-- post form data to form.php -->
       <form method = "post" action = "ticket.php" >
          <h2>Flyer Information</h2>
 
-         <!-- create four text boxes for user input -->
          <div><label>First name:</label> 
             <input type = "text" name = "fname" required></div>
          <div><label>Last name:</label>
@@ -148,7 +140,6 @@ mysqli_close( $database );
          <h2>Section Selection</h2>
          <p>Which section would you like to book a seat from?</p>
 
-         <!-- create drop-down list containing book names -->
          <?php
             print("<select name = 'section' required>");
             

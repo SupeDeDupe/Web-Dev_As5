@@ -25,8 +25,6 @@ for ( $counter = 0; $row = mysqli_fetch_row( $result ); ++$counter )
     $seats_array[$row[0]-1] = $row[1]; 
 } // end for
 
-//mysqli_close( $database );
-
 ?>
 
 <!DOCTYPE html>
@@ -115,29 +113,14 @@ for ( $counter = 0; $row = mysqli_fetch_row( $result ); ++$counter )
               if($seats_array[$i] == 0)
               {
                 $seat = $i + 1;
-/*
-                $conn = mysqli_connect("localhost", "root", "", "flightseats");
-                // Check connection
-                if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
-                }*/
+
                 $update = "UPDATE seat SET SeatAvailable=1 WHERE SeatNumber=$seat";
                 if (!( $result = mysqli_query($database, $update) ) ) {
                     die("Update failed");
                   }
 
-/*
-                $update = "UPDATE seat SET SeatAvailable=1 WHERE SeatNumber=$seat";
-
-                if ( !( $result = mysqli_query( $database, $query ) ) ) 
-                {
-                    print( "<p>Could not execute query!</p>" );
-                    die( mysql_error() . "</body></html>" );
-                } // end if
-*/
-                //$seats_array[$i] = 1;
                 $done = true;
-                //$seat = $i + 1;
+                mysqli_close( $database );
               }
           }
 
