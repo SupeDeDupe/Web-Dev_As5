@@ -1,0 +1,50 @@
+
+Commands for the teminal to create the database:
+
+
+/Applications/xampp/xamppfiles/bin/mysql -u root -p
+create database flightseats;
+use flightseats;
+
+create table seat(
+    -> SeatNumber Integer Primary Key,
+    -> SeatAvailable Integer Not Null
+    -> );
+
+Insert into seat(SeatNumber, SeatAvailable) values (1,1);
+Insert into seat(SeatNumber, SeatAvailable) values (2,1);
+Insert into seat(SeatNumber, SeatAvailable) values (3,1);
+Insert into seat(SeatNumber, SeatAvailable) values (4,1);
+Insert into seat(SeatNumber, SeatAvailable) values (5,1);
+Insert into seat(SeatNumber, SeatAvailable) values (6,1);
+Insert into seat(SeatNumber, SeatAvailable) values (7,1);
+Insert into seat(SeatNumber, SeatAvailable) values (8,1);
+Insert into seat(SeatNumber, SeatAvailable) values (9,1);
+Insert into seat(SeatNumber, SeatAvailable) values (10,1);
+Insert into seat(SeatNumber, SeatAvailable) values (11,1);
+Insert into seat(SeatNumber, SeatAvailable) values (12,1);
+Insert into seat(SeatNumber, SeatAvailable) values (13,1);
+Insert into seat(SeatNumber, SeatAvailable) values (14,1);
+Insert into seat(SeatNumber, SeatAvailable) values (15,1);
+
+
+
+
+exit
+
+
+Update seat set SeatAvailable = 0 where SeatNumber = 1;
+Update seat set SeatAvailable = 0 where SeatNumber = 2;
+Update seat set SeatAvailable = 0 where SeatNumber = 3;
+Update seat set SeatAvailable = 0 where SeatNumber = 4;
+Update seat set SeatAvailable = 0 where SeatNumber = 5;
+Update seat set SeatAvailable = 0 where SeatNumber = 6;
+Update seat set SeatAvailable = 0 where SeatNumber = 7;
+Update seat set SeatAvailable = 0 where SeatNumber = 8;
+Update seat set SeatAvailable = 0 where SeatNumber = 9;
+Update seat set SeatAvailable = 0 where SeatNumber = 10;
+Update seat set SeatAvailable = 0 where SeatNumber = 11;
+Update seat set SeatAvailable = 0 where SeatNumber = 12;
+Update seat set SeatAvailable = 0 where SeatNumber = 13;
+Update seat set SeatAvailable = 0 where SeatNumber = 14;
+Update seat set SeatAvailable = 0 where SeatNumber = 15;

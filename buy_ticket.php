@@ -2,6 +2,33 @@
 // Start the session
 session_start();
 
+
+$query = "SELECT * FROM seat";
+
+// Connect to MySQL
+if ( !( $database = mysqli_connect( "localhost", "root", "" ) ) )
+    die( "<p>Could not connect to database</p></body></html>" );
+
+if ( !mysqli_select_db( $database, "flightseats" ) )
+    die( "<p>Could not open flightseats database</p></body></html>" );
+
+// query flightseats database
+if ( !( $result = mysqli_query( $database, $query ) ) ) 
+{
+    print( "<p>Could not execute query!</p>" );
+    die( mysql_error() . "</body></html>" );
+} // end if
+
+$seats_array = array();
+
+// fetch each record in result set
+for ( $counter = 0; $row = mysqli_fetch_row( $result ); ++$counter )
+{
+    $seats_array[$row[0]-1] = $row[1]; 
+} // end for
+
+mysqli_close( $database );
+
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +51,9 @@ session_start();
 
       <?php
          $numAvailableSeats = 0;
-         for ( $i = 0; $i < count( $_SESSION["seats"] ); ++$i ) 
+         for ( $i = 0; $i < count( $seats_array ); ++$i ) 
          {
-            if($_SESSION["seats"][$i] == 0)
+            if($seats_array[$i] == 0)
                $numAvailableSeats++;
          }
 
@@ -91,7 +118,7 @@ session_start();
 
                print("<td>");
 
-               if ($_SESSION["seats"][$seatIndex] == 0)
+               if ($seats_array[$seatIndex] == 0)
                   print( "Available" );
                else
                   print( "Unavailable" );
@@ -125,11 +152,11 @@ session_start();
          <?php
             print("<select name = 'section' required>");
             
-            if($_SESSION["seats"][4] == 0)
+            if($seats_array[4] == 0)
                print("<option>A</option>");
-            if($_SESSION["seats"][9] == 0)
+            if($seats_array[9] == 0)
                print("<option>B</option>");
-            if($_SESSION["seats"][14] == 0)
+            if($seats_array[14] == 0)
                print("<option>C</option>");
             print("</select>");
          ?>

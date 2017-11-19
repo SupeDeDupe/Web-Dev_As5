@@ -2,13 +2,7 @@
 // Start the session
 session_start();
 
-// initialize all seats to available
-$seats_array = array(0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0);
-
-// put the array in a session variable
-$_SESSION["seats"]=$seats_array;
+// put the prices in session variables
 $_SESSION["sectionA_price"] = rand(100,200);
 $_SESSION["sectionB_price"] = rand(100,300);
 $_SESSION["sectionC_price"] = rand(100,300);

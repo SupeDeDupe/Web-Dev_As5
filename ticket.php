@@ -1,5 +1,32 @@
 <?php
 session_start();
+
+$query = "SELECT * FROM seat";
+
+// Connect to MySQL
+if ( !( $database = mysqli_connect( "localhost", "root", "" ) ) )
+    die( "<p>Could not connect to database</p></body></html>" );
+
+if ( !mysqli_select_db( $database, "flightseats" ) )
+    die( "<p>Could not open flightseats database</p></body></html>" );
+
+// query flightseats database
+if ( !( $result = mysqli_query( $database, $query ) ) ) 
+{
+    print( "<p>Could not execute query!</p>" );
+    die( mysql_error() . "</body></html>" );
+} // end if
+
+$seats_array = array();
+
+// fetch each record in result set
+for ( $counter = 0; $row = mysqli_fetch_row( $result ); ++$counter )
+{
+    $seats_array[$row[0]-1] = $row[1]; 
+} // end for
+
+//mysqli_close( $database );
+
 ?>
 
 <!DOCTYPE html>
@@ -85,17 +112,35 @@ session_start();
         $done = false;
         for ( $i = $lower; !$done && $i < $upper; ++$i ) 
           {
-              if($_SESSION["seats"][$i] == 0)
+              if($seats_array[$i] == 0)
               {
-                $_SESSION["seats"][$i] = 1;
-                $done = true;
                 $seat = $i + 1;
+/*
+                $conn = mysqli_connect("localhost", "root", "", "flightseats");
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }*/
+                $update = "UPDATE seat SET SeatAvailable=1 WHERE SeatNumber=$seat";
+                if (!( $result = mysqli_query($database, $update) ) ) {
+                    die("Update failed");
+                  }
+
+/*
+                $update = "UPDATE seat SET SeatAvailable=1 WHERE SeatNumber=$seat";
+
+                if ( !( $result = mysqli_query( $database, $query ) ) ) 
+                {
+                    print( "<p>Could not execute query!</p>" );
+                    die( mysql_error() . "</body></html>" );
+                } // end if
+*/
+                //$seats_array[$i] = 1;
+                $done = true;
+                //$seat = $i + 1;
               }
           }
 
-   		?>
-
-      <?php
         if ($seat < 0 || $seat > 15)
         {
           print("<p> Flight ticket not available.</p?>");
