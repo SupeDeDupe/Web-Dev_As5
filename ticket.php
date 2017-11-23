@@ -4,11 +4,11 @@ session_start();
 $query = "SELECT * FROM seat";
 
 // Connect to MySQL
-if ( !( $database = mysqli_connect( "localhost", "root", "" ) ) )
+if ( !( $database = mysqli_connect( "db.peicloud.ca", "tauU", "tautau" ) ) )
     die( "<p>Could not connect to database</p></body></html>" );
 
-if ( !mysqli_select_db( $database, "flightseats" ) )
-    die( "<p>Could not open flightseats database</p></body></html>" );
+if ( !mysqli_select_db( $database, "tauDB" ) )
+    die( "<p>Could not open tauDB database</p></body></html>" );
 
 // query flightseats database
 if ( !( $result = mysqli_query( $database, $query ) ) ) 
